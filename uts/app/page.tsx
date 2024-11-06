@@ -9,6 +9,7 @@ import Myinfos from "./components/myinfos";
 import Hobbies from "./components/hobbies";
 import Contactrating from "./components/contactrating";
 import './toni-style.css';
+import Color from "./components/color"
 
 export default function MyApp() {
   const [theme, setTheme] = useState<string>('light'); // Default theme
@@ -23,24 +24,26 @@ export default function MyApp() {
       setTheme('light');
     }
   };
-
+  const [warna, setWarna] = useState("light"); // Menambahkan state untuk warna
   return (
-    <div className={`app ${theme}`}>
-      <button
-        onClick={toggleTheme}
-        className="fixed top-4 right-4 bg-indigo-500 text-white font-bold py-2 px-4 rounded"
-      >
-        Toggle Theme
-      </button>
-      <section>
-        <Hero />
-        <RiwayatPendidikan />
-        <RiwayatPekerjaan />
-        <Skills />
-        <Myinfos />
-        <Hobbies />
-        <Contactrating />
-      </section>
-    </div>
+
+    <section
+      className={`min-h-screen p-4 transition-colors duration-300 ${warna === "dark"
+          ? "bg-black text-white"
+          : warna === "light"
+            ? "bg-white text-black"
+            : "bg-green-300 text-gray-900"
+        }`}
+    >
+      <Hero />
+      <RiwayatPendidikan />
+      <RiwayatPekerjaan />
+      <Skills />
+      <Myinfos />
+      <Hobbies />
+      <Contactrating />
+      <Color setWarna={setWarna} />
+    </section>
+
   );
 }
